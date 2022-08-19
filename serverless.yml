@@ -1,0 +1,20 @@
+service: serverless-email-automate
+
+provider:
+  name: aws
+  region: us-east-1
+  stackName: serverless-stack-one
+  runtime: python3.8
+  memorySize: 512
+  timeout: 10
+
+
+functions:
+  lambda_email_automate:
+    handler: lambda_email_automate.handler
+    events:
+      - eventBridge:
+          enabled: false
+          schedule: rate(60 minutes)
+
+
